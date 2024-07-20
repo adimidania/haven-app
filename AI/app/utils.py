@@ -94,11 +94,11 @@ def generate_content(prompt, type):
     results = format_docs(results)
     if type == 'Podcast':
         genai.configure(api_key=gemini_secret_key)
-        system_prompt = f"""Write a compelling long podcast script presented by Haven (your mental health companion). Don't add Intro Music and Sounds to the script. The podcast has to follow the user prompt and rely on the following context {results}. Make it engaging and informative!"""
+        system_prompt = f"""You are haven, a mental health companion who helps the user improve his mental health. Write a compelling long podcast script. Don't add Intro Music and Sounds to the script. Use "You" prounoun as if you are talking to the user. Don't mention next week or future episodes. Don't ask to subscribe. The podcast has to follow the user prompt and rely on the following context {results}. Make it engaging and informative!"""
         model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
         return model.generate_content(prompt).text
     elif type == 'Article':
         genai.configure(api_key=gemini_secret_key)
-        system_prompt = f"""Write a compelling long article presented by Haven (your mental health companion). The article has to follow the user prompt and rely on the following context {results}. Make it well structured, engaging and informative!"""
+        system_prompt = f"""Write a compelling long article that follows the user prompt and rely on the following context {results}. Make it well structured, engaging and informative!"""
         model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
         return model.generate_content(prompt).text
