@@ -47,3 +47,9 @@ async def refine_query(request: QueryModel):
     history = request.chat_history
     response = query_refinement(history, query)
     return {"response": response}
+
+# Q&A Endpoint
+@app.post("/qna")
+async def qna(question: str):
+    response = rag(question)
+    return {"response": response}

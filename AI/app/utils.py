@@ -25,6 +25,10 @@ def format_chat(chat):
         })
     return chat_history
 
+# This function takes a list of Pinecone documents and returns the formatted documents
+def format_docs(documents):
+    return [f"""Document: {response["metadata"]["text"]}""" for response in documents['matches'] if response["score"] > 0.2]
+
 # This function takes the chat history and a query then returns a refined query that can be used for similarity search
 def query_refinement(chat_history, query):
     genai.configure(api_key=gemini_secret_key)
@@ -43,8 +47,25 @@ def chat(query, chat_history):
     pass
 
 # This function is an implementation of a naive retrieval augmented generation flow
-def qna(query):
-    pass
+def rag(query):
+    embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent=index_name)
+    embedded_query = embeddings.embed_query(query)
+    pc = Pinecone(api_key=pinecone_secret_key)
+    index = pc.Index(index_name)
+    results = index.query(
+        vector=embedded_query,
+        top_k=3,
+        include_metadata=True
+    )
+    results = format_docs(results)
+    if len(results) == 0:
+        return "I'm sorry, I don't have an answer to that question. Could you please ask another question?"
+    else:
+        genai.configure(api_key=gemini_secret_key)
+        system_prompt = f"""You a smart assistant that answers questions related to mental health. Answer the user's query by formulating a well-elaborated answer that relies on the following context: {results}."""
+        
+        model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
+        return model.generate_content(query).text
 
 # This function takes a prompt and a type (article or podcast) then returns the generated content
 def generate(prompt, type):
