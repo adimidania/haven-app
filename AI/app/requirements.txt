@@ -1,11 +1,10 @@
 fastapi==0.110
 uvicorn
-openai
 pydantic
 cohere
 tiktoken
 langchain
 pinecone-client
+google-generativeai
 langchain_community
 langchain-experimental
-ai21
