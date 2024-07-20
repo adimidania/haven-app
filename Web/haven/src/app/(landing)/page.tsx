@@ -1,9 +1,11 @@
 import Testomonial from "@/components/testomonial";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -200,10 +202,10 @@ export default function Home() {
           <div className="flex flex-col lg:justify-between lg:flex-row">
             <div className="flex flex-col justify-center lg:items-end">
               <p className="font-bold text-center">Quick Menu</p>
-              <Button variant={"link"} className="font-light text-left pr-0 text-current">About</Button>
-              <Button variant={"link"} className="font-light text-left pr-0 text-current">Reviews</Button>
-              <Button variant={"link"} className="font-light text-left pr-0 text-current">Donate</Button>
-              <Button variant={"link"} className="font-light text-left pr-0 text-current">Get Started</Button>
+              <Link href={"#about"} className={cn(buttonVariants({ variant: "link" }), "font-light text-left pr-0 text-current")}>About</Link>
+              <Link href={"#reviews"} className={cn(buttonVariants({ variant: "link" }), "font-light text-left pr-0 text-current")}>Reviews</Link>
+              <Link href={"#donate"} className={cn(buttonVariants({ variant: "link" }), "font-light text-left pr-0 text-current")}>Donate</Link>
+              <Link href={"/auth/sign-in"} className={cn(buttonVariants({ variant: "link" }), "font-light text-left pr-0 text-current")}>Get Started</Link>
             </div>
             <div className="flex flex-col justify-center items-start px-8 mt-5">
               <p className="font-bold text-lg text-left">Subscribe to our newletter</p>
