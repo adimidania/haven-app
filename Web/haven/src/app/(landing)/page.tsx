@@ -37,22 +37,22 @@ export default function Home() {
               alt="Hero Icon" />
             <p className="lg:px-16 text-justify">
               Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive
-              resources, I've found solace and support in moments of stress. From guided meditations to insightful articles,
-              Mindfulify offers a holistic approach to mental wellness that's both empowering and uplifting.
+              resources, I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles,
+              Mindfulify offers a holistic approach to mental wellness that&apos;s both empowering and uplifting.
               Highly recommend!Mindfulify has truly transformed my digital experience. With its user-friendly interface and
-              comprehensive resources, I've found solace and support in moments of stress. From guided meditations to
-              insightful articles, Mindfulify offers a holistic approach to mental wellness that's both empowering and
+              comprehensive resources, I&apos;ve found solace and support in moments of stress. From guided meditations to
+              insightful articles, Mindfulify offers a holistic approach to mental wellness that&apos;s both empowering and
               uplifting. Highly recommend!
             </p>
           </div>
           <div className="flex flex-col gap-5 md:flex-row md:items-center mb-6">
             <p className="lg:px-16 text-justify">
               Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive
-              resources, I've found solace and support in moments of stress. From guided meditations to insightful articles,
-              Mindfulify offers a holistic approach to mental wellness that's both empowering and uplifting. Highly recommend!
+              resources, I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles,
+              Mindfulify offers a holistic approach to mental wellness that&apos;s both empowering and uplifting. Highly recommend!
               Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive resources,
-              I've found solace and support in moments of stress. From guided meditations to insightful articles, Mindfulify offers
-              a holistic approach to mental wellness that's both empowering and uplifting. Highly recommend!
+              I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles, Mindfulify offers
+              a holistic approach to mental wellness that&apos;s both empowering and uplifting. Highly recommend!
             </p>
             <Image
               width={500}
@@ -70,22 +70,22 @@ export default function Home() {
               alt="Hero Icon" />
             <p className="lg:px-16 text-justify">
               Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive
-              resources, I've found solace and support in moments of stress. From guided meditations to insightful articles,
-              Mindfulify offers a holistic approach to mental wellness that's both empowering and uplifting.
+              resources, I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles,
+              Mindfulify offers a holistic approach to mental wellness that&apos;s both empowering and uplifting.
               Highly recommend!Mindfulify has truly transformed my digital experience. With its user-friendly interface and
-              comprehensive resources, I've found solace and support in moments of stress. From guided meditations to
-              insightful articles, Mindfulify offers a holistic approach to mental wellness that's both empowering and
+              comprehensive resources, I&apos;ve found solace and support in moments of stress. From guided meditations to
+              insightful articles, Mindfulify offers a holistic approach to mental wellness that&apos;s both empowering and
               uplifting. Highly recommend!
             </p>
           </div>
           <div className="flex flex-col gap-5 md:flex-row md:items-center mb-6">
             <p className="lg:px-16 text-justify">
               Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive
-              resources, I've found solace and support in moments of stress. From guided meditations to insightful articles,
-              Mindfulify offers a holistic approach to mental wellness that's both empowering and uplifting. Highly recommend!
+              resources, I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles,
+              Mindfulify offers a holistic approach to mental wellness that&apos;s both empowering and uplifting. Highly recommend!
               Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive resources,
-              I've found solace and support in moments of stress. From guided meditations to insightful articles, Mindfulify offers
-              a holistic approach to mental wellness that's both empowering and uplifting. Highly recommend!
+              I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles, Mindfulify offers
+              a holistic approach to mental wellness that&apos;s both empowering and uplifting. Highly recommend!
             </p>
             <Image
               width={500}
@@ -169,11 +169,11 @@ export default function Home() {
             <div className="flex flex-col">
               <p className="lg:pr-16 text-justify mb-4">
                 Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive
-                resources, I've found solace and support in moments of stress. From guided meditations to insightful articles,
-                Mindfulify offers a holistic approach to mental wellness that's both empowering and uplifting. Highly recommend!
+                resources, I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles,
+                Mindfulify offers a holistic approach to mental wellness that&apos;s both empowering and uplifting. Highly recommend!
                 Mindfulify has truly transformed my digital experience. With its user-friendly interface and comprehensive resources,
-                I've found solace and support in moments of stress. From guided meditations to insightful articles, Mindfulify offers
-                a holistic approach to mental wellness that's both empowering and uplifting. Highly recommend!
+                I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles, Mindfulify offers
+                a holistic approach to mental wellness that&apos;s both empowering and uplifting. Highly recommend!
               </p>
               <Button className="bg-accent text-white w-fit px-12 py-6">Donate now!</Button>
             </div>
@@ -193,7 +193,7 @@ export default function Home() {
                 Haven
               </p>
               <p className="text-left font-extralight w-full">
-                Your go-to destination for embracing mindfulness and finding inner peace midst the digital noise of today's world.
+                Your go-to destination for embracing mindfulness and finding inner peace midst the digital noise of today&apos;s world.
               </p>
             </div>
           </div>
