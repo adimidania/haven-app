@@ -50,7 +50,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             })
         }
 
-        router.push("/home")
+        router.push("/home" || searchParams.get("from") || "/")
     }
 
     return (
