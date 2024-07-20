@@ -32,6 +32,10 @@ class QueryModel(BaseModel):
     query: str
     chat_history: List[MessageModel]
 
+class ContentModel(BaseModel):
+    prompt: str
+    type: str
+
 # Define the root route
 @app.get("/")
 async def root():
@@ -52,4 +56,12 @@ async def refine_query(request: QueryModel):
 @app.post("/qna")
 async def qna(question: str):
     response = rag(question)
+    return {"response": response}
+
+# Content generation Endpoint
+@app.post("/generate_content")
+async def generate(request: ContentModel):
+    prompt = request.prompt
+    type = request.type
+    response = generate_content(prompt, type)
     return {"response": response}

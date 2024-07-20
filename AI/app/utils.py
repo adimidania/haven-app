@@ -63,10 +63,28 @@ def rag(query):
     else:
         genai.configure(api_key=gemini_secret_key)
         system_prompt = f"""You a smart assistant that answers questions related to mental health. Answer the user's query by formulating a well-elaborated answer that relies on the following context: {results}."""
-        
         model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
         return model.generate_content(query).text
 
 # This function takes a prompt and a type (article or podcast) then returns the generated content
-def generate(prompt, type):
-    pass
+def generate_content(prompt, type):
+    embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent=index_name)
+    embedded_query = embeddings.embed_query(prompt)
+    pc = Pinecone(api_key=pinecone_secret_key)
+    index = pc.Index(index_name)
+    results = index.query(
+        vector=embedded_query,
+        top_k=4,
+        include_metadata=True
+    )
+    results = format_docs(results)
+    if type == 'Podcast':
+        genai.configure(api_key=gemini_secret_key)
+        system_prompt = f"""Write a compelling long podcast script presented by Haven (your mental health companion). Don't add Intro Music and Sounds to the script. The podcast has to follow the user prompt and rely on the following context {results}. Make it engaging and informative!"""
+        model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
+        return model.generate_content(prompt).text
+    elif type == 'Article':
+        genai.configure(api_key=gemini_secret_key)
+        system_prompt = f"""Write a compelling long article presented by Haven (your mental health companion). The article has to follow the user prompt and rely on the following context {results}. Make it well structured, engaging and informative!"""
+        model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
+        return model.generate_content(prompt).text
