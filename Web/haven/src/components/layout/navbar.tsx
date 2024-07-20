@@ -1,8 +1,9 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { SVGProps } from "react"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 export default function NavBar() {
     return (
@@ -48,7 +49,7 @@ export default function NavBar() {
                     Donate
                 </Link>
             </nav>
-            <Button className="hidden lg:inline-flex bg-accent text-white">Get Started</Button>
+            <Link href={"/auth/sign-in"} className={cn(buttonVariants(), "hidden lg:inline-flex bg-accent text-white")}>Get Started</Link>
             <Sheet>
                 <SheetTrigger asChild>
                     <Button variant="outline" size="icon" className="lg:hidden">

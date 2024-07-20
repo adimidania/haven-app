@@ -29,7 +29,7 @@ export async function authenticate(formData: {
         case "CredentialsSignin":
           return "Invalid credentials.";
         default:
-          return "Unknown error.";
+          return "Invalid credentials.";
       }
     }
     throw error;
