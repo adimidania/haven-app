@@ -1,10 +1,11 @@
-fastapi==0.110
+fastapi
 uvicorn
 pydantic
 cohere
 tiktoken
 langchain
 pinecone-client
+langchain-google-genai
 google-generativeai
 langchain_community
 langchain-experimental

@@ -20,16 +20,17 @@ app.add_middleware(
 
 # Models
 class MessageModel(BaseModel):
-    author: str
-    comment: str
+    role: str
+    parts: List[str]
 
 class ConversationModel(BaseModel):
     chat_history: List[MessageModel]
     scenario: str
     conversation: str
 
-class QnA(BaseModel):
+class QueryModel(BaseModel):
     query: str
+    chat_history: List[MessageModel]
 
 # Define the root route
 @app.get("/")
@@ -39,16 +40,10 @@ async def root():
     """
     return {"message": "Welcome to the Haven API!"}
 
-# Question & Answer Endpoint
-@app.post("/qa")
-async def qa(request: QuestionModel):
-    message = request.question
-    response = question_answer(message)
+# Refining the query Endpoint
+@app.post("/refine_query")
+async def refine_query(request: QueryModel):
+    query = request.query
+    history = request.chat_history
+    response = query_refinement(history, query)
     return {"response": response}
-
-# Get scenario Endpoint
-@app.post("/scenario")
-async def scenario(request: ScenarioModel):
-    emergency_type = request.emergency_type
-    response = get_scenario(emergency_type)
-    return response
