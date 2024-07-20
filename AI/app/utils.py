@@ -1,18 +1,18 @@
-from configparser import ConfigParser
-import cohere
+from dotenv import load_dotenv
 import os
 import google.generativeai as genai 
 from langchain_community.embeddings import CohereEmbeddings
 from pinecone import Pinecone
 from langchain_community.vectorstores import Pinecone as Pinecone_Langchain
 
-# Read the secret keys from the configuration file
-config = ConfigParser()
-config.read("config.ini")
-cohere_secret_key = config.get('Cohere', 'secret_key')
-pinecone_secret_key = config.get('Pinecone', 'secret_key')
-gemini_secret_key = config.get('Gemini', 'secret_key')
-index_name = os.environ['PINECONE_INDEX_NAME'] = 'haven-app'
+# Load environment variables from .env file
+load_dotenv()
+
+# Read secret keys from environment variables
+cohere_secret_key = os.getenv('COHERE_SECRET_KEY')
+pinecone_secret_key = os.getenv('PINECONE_SECRET_KEY')
+gemini_secret_key = os.getenv('GEMINI_SECRET_KEY')
+index_name = os.getenv('PINECONE_INDEX_NAME', 'haven-app')  # Default value 'haven-app' if not set
 
 
 # This function format the chat history to the format that is compatible with Gemini chat
