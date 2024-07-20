@@ -65,3 +65,11 @@ async def generate(request: ContentModel):
     type = request.type
     response = generate_content(prompt, type)
     return {"response": response}
+
+# Chat Endpoint
+@app.post("/chat")
+async def chat_ai(request: QueryModel):
+    query = request.query
+    history = request.chat_history
+    response = chat(query, history)
+    return {"response": response}

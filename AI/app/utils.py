@@ -20,8 +20,8 @@ def format_chat(chat):
     chat_history = []
     for message in chat:
         chat_history.append({
-            "role": "user" if message["role"] == "User" else "model",
-            "parts": [message["content"]]
+            "role": "user" if message.role == "user" else "model",
+            "parts": [message.parts[0]]
         })
     return chat_history
 
@@ -42,9 +42,23 @@ def query_refinement(chat_history, query):
 
 # This function takes a query and chat history then returns the response from the model
 def chat(query, chat_history):
-    history = format_chat(chat)
-
-    pass
+    chat_history = format_chat(chat_history)
+    query = query_refinement(chat_history, query)
+    embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent=index_name)
+    embedded_query = embeddings.embed_query(query)
+    pc = Pinecone(api_key=pinecone_secret_key)
+    index = pc.Index(index_name)
+    results = index.query(
+        vector=embedded_query,
+        top_k=3,
+        include_metadata=True
+    )
+    results = format_docs(results)
+    context = ''.join(results)
+    model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=f"You are an empathic mental health assistant who listens to the user and provide them with a long warm advice. Answer to the user's query based on this context: {context}")
+    chat = model.start_chat(history=chat_history)
+    print(f"Query is {query}")
+    return chat.send_message(content=query).text
 
 # This function is an implementation of a naive retrieval augmented generation flow
 def rag(query):
