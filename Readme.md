@@ -1,6 +1,6 @@
-# Haven - Your AI-Powered mental health companion
+# 💜 Haven - Your AI-Powered mental health companion
 
-Welcome to the Haven Github repository! Haven is a comprehensive mental health companion designed to support and improve your mental well-being from the comfort of your home. Our AI-powered app provides users with personalized tools and resources to manage stress, anxiety, and other mental health challenges effectively. Haven also aims to raise awareness and foster a deeper understanding of mental health, empowering users to take proactive steps towards a healthier, happier life.
+Welcome to the Haven Github repository! **Haven** is a comprehensive mental health companion designed to support and improve your mental well-being from the comfort of your home.
 
 ## Structure
 This repository is structured as follows:
