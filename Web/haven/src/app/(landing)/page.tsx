@@ -177,7 +177,7 @@ export default function Home() {
                 I&apos;ve found solace and support in moments of stress. From guided meditations to insightful articles, Mindfulify offers
                 a holistic approach to mental wellness that&apos;s both empowering and uplifting. Highly recommend!
               </p>
-              <Button className="bg-accent text-white w-fit px-12 py-6">Donate now!</Button>
+              <Button className="text-white w-fit px-12 py-6">Donate now!</Button>
             </div>
             <Image
               width={500}

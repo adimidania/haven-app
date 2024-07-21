@@ -49,7 +49,7 @@ export default function NavBar() {
                     Donate
                 </Link>
             </nav>
-            <Link href={"/auth/sign-in"} className={cn(buttonVariants(), "hidden lg:inline-flex bg-accent text-white")}>Get Started</Link>
+            <Link href={"/auth/sign-in"} className={cn(buttonVariants(), "hidden lg:inline-flex text-white")}>Get Started</Link>
             <Sheet>
                 <SheetTrigger asChild>
                     <Button variant="outline" size="icon" className="lg:hidden">

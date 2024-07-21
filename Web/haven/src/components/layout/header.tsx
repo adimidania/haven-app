@@ -6,26 +6,19 @@ import { UserNav } from './user-nav';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
+import { useSidebar } from '@/hooks/useSidebar';
 
 export default function Header() {
+    const { isMinimized } = useSidebar();
     const { data: session } = useSession();
 
     return (
-        <div className="supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 border-b bg-background/95 backdrop-blur">
+        <div className={cn("supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 border-b bg-background/95 backdrop-blur duration-500",
+            !isMinimized ? 'md:left-72' : 'md:left-[72px]',)}>
             <nav className="flex h-14 items-center justify-between px-4">
-                <div className="hidden lg:block">
-                    <Link
-                        href={'/home'}
-                    >
-                        <Image
-                            src="/logo.svg"
-                            alt="logo"
-                            width={24}
-                            height={24}
-                        />
-                    </Link>
+                <div className="hidden md:block">
                 </div>
-                <div className={cn('block lg:!hidden')}>
+                <div className={cn('block md:!hidden')}>
                     <MobileSidebar />
                 </div>
 
