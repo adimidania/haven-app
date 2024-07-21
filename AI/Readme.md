@@ -13,7 +13,10 @@ Below is a diagram illustrating the RAG process:
 ![RAG Diagram](assets/RAG_flow.png)
 
 ## Features
-
+- [Chat]()
+- [Chat]()
+- [Chat]()
+- [Chat]()
 ### Chat
 The Chat endpoint allows users to interact with our virtual assistant for real-time support and guidance. The assistant uses RAG to provide personalized and accurate responses based on the knowledge base. 
 
