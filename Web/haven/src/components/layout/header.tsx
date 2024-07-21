@@ -13,7 +13,7 @@ export default function Header() {
     const { data: session } = useSession();
 
     return (
-        <div className={cn("supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 border-b bg-background/95 backdrop-blur duration-500",
+        <div className={cn("supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 bg-background/95 backdrop-blur duration-500",
             !isMinimized ? 'md:left-72' : 'md:left-[72px]',)}>
             <nav className="flex h-14 items-center justify-between px-4">
                 <div className="hidden md:block">
