@@ -19,6 +19,7 @@ Below is a diagram illustrating the RAG process:
 - [Converting Generated Text Content to Immersive Podcasts](#Converting_Generated_Text_Content_to_Immersive_Podcasts)
 
 The Chat, Content Generation, and Question/Answer features are deployed using Render and be used via this endpoint: https://haven-app.onrender.com. 
+
 The Converting Generated Text Content to Immersive Podcasts can be found in the `/Notebooks` folder.
 ### Chat
 The Chat endpoint allows users to interact with our virtual assistant for real-time support and guidance. The assistant uses RAG to provide personalized and accurate responses based on the knowledge base. 
