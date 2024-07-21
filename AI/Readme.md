@@ -108,9 +108,7 @@ The output will be a JSON object containing the generated content.
 The `content` field contains the generated text, which could be either a podcast script or an article, based on the specified type.
 
 ### Question and Answer
-The Question and Answer (QA) endpoint allows users to ask questions and receive answers based on the knowledge base. This feature uses RAG to retrieve the most relevant information and generate a precise response. Below is a diagram illustrating the QA process:
-
-![QA Diagram](assets/qna.png)
+The Question and Answer (QA) endpoint allows users to ask questions and receive answers based on the knowledge base. This feature uses RAG to retrieve the most relevant information and generate a precise response.
 
 **URL:** `endpoint/qna`
 

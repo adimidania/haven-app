@@ -20,9 +20,9 @@ app.add_middleware(
 
 # Models
 class MessageModel(BaseModel):
-    role: str
-    parts: List[str]
-
+    isSent: bool
+    message: str
+    
 class ConversationModel(BaseModel):
     chat_history: List[MessageModel]
     scenario: str
