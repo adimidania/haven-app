@@ -7,7 +7,7 @@ const { auth } = NextAuth(authConfig);
 export default auth(async (req) => {
   const isAuthenticated = !!req.auth;
 
-  const isAuthPage = req.nextUrl.pathname.startsWith("/auth/sign-in");
+  const isAuthPage = req.nextUrl.pathname.startsWith("/auth/sign-in") || req.nextUrl.pathname.startsWith("/auth/sign-up");
 
   if (isAuthPage) {
     if (isAuthenticated) {
