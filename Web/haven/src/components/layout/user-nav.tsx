@@ -21,7 +21,7 @@ export function UserNav() {
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                         <Avatar className="h-8 w-8">
-                            <AvatarFallback>{session.user?.name?.[0]}</AvatarFallback>
+                            <AvatarFallback className='bg-primary text-accent'>{session.user?.name?.[0]}</AvatarFallback>
                         </Avatar>
                     </Button>
                 </DropdownMenuTrigger>
