@@ -34,7 +34,7 @@ export function DashboardNav({
     }
 
     return (
-        <nav className="flex flex-col items-center gap-2 bg-primary">
+        <nav className="flex flex-col items-center gap-2 bg-secondary">
             <TooltipProvider>
                 {items.map((item, index) => {
                     const Icon = Icons[item.icon || 'arrowRight'];
@@ -45,8 +45,8 @@ export function DashboardNav({
                                     <Link
                                         href={item.disabled ? '/' : item.href}
                                         className={cn(
-                                            'flex items-center w-11/12 gap-2 overflow-hidden rounded-md py-4 px-4 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
-                                            path === item.href ? 'bg-accent' : 'transparent',
+                                            'flex items-center w-11/12 gap-2 overflow-hidden rounded-md py-4 px-4 text-sm font-medium text-accent hover:bg-accent hover:text-secondary',
+                                            path === item.href ? 'bg-accent text-secondary' : 'transparent',
                                             item.disabled && 'cursor-not-allowed opacity-80'
                                         )}
                                         onClick={() => {
