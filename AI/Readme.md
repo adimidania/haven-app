@@ -52,10 +52,8 @@ When making a request to our API, the input should be structured in the followin
   "query": "string",
   "chat_history": [
     {
-      "role": "string",
-      "parts": [
-        "string"
-      ]
+      "isSent": "bool",
+      "message": "string"
     }
   ]
 }

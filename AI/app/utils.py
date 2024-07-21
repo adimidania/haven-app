@@ -31,6 +31,8 @@ def format_docs(documents):
 
 # This function takes the chat history and a query then returns a refined query that can be used for similarity search
 def query_refinement(chat_history, query):
+    if len(chat_history) > 15:
+        chat_history = chat_history[-15:]
     genai.configure(api_key=gemini_secret_key)
     system_prompt = f"""Given a chat history and the latest user question which might reference context in the chat history, 
                         formulate a standalone question which can be understood without the chat history. 
