@@ -127,11 +127,32 @@ The Question and Answer (QA) endpoint allows users to ask questions and receive 
   "response": "str"
 }
 ```
+### Converting Generated Text Content to Immersive Podcasts
+This feature transforms generated text content into an immersive podcast experience by leveraging open source state-of-the-art speech synthesis and image generation models. The process involves converting text to speech, generating relevant visuals, and synchronizing these elements to create a cohesive audio-visual presentation.
+#### Speech Generation
+
+1. **Tacotron2 Model**:
+   - Utilized for generating mel spectrograms from text. This model is trained on the LJSpeech dataset and is known for its high-quality and natural-sounding speech synthesis.
+
+2. **HiFi-GAN Model**:
+   - Employed to convert the mel spectrograms into high-fidelity waveforms. HiFi-GAN is renowned for its ability to produce realistic and clear audio outputs from spectrograms.
+
+#### Image Generation
+
+1. **Stable Diffusion Model**:
+   - This model is utilized to generate high-quality images that correspond to the podcast's content. By using a robust text-to-image generation approach, the model produces visually appealing and contextually relevant imagery.
+
+#### Synchronization
+
+1. **Audio and Visual Integration**:
+   - The generated audio segments are synchronized with the corresponding images. Each audio segment is paired with a matching image, and pauses are strategically inserted to create a seamless and engaging narrative flow. This synchronization ensures that the visual content aligns perfectly with the spoken word, enhancing the listener's experience.
 
 ## Technologies
 - **Pinecone:** We use Pinecone as our vector database. Pinecone enables efficient and scalable similarity searches, allowing us to quickly retrieve relevant documents from our knowledge base.
 - **Cohere:** For generating embeddings, we rely on Cohere. Cohere's state-of-the-art models provide high-quality embeddings that represent the semantic meaning of documents, which is crucial for accurate similarity searches.
 - **Gemini:** Our Large Language Model (LLM) is powered by Gemini. Gemini processes the refined queries and retrieved documents to generate well-informed, contextually relevant responses and content.
-
+- **speechbrain/tts-tacotron2-ljspeech**: Utilized for generating mel spectrograms from text. This model is trained on the LJSpeech dataset and is known for its high-quality and natural-sounding speech synthesis.
+- **speechbrain/tts-hifigan-ljspeech**: Employed to convert the mel spectrograms into high-fidelity waveforms. HiFi-GAN is renowned for its ability to produce realistic and clear audio outputs from spectrograms.
+- **stabilityai/stable-diffusion-xl-base-1.0**:  Lightweight model utilized to generate high-quality images that correspond to the podcast's content
 ## Data
 The `/Data` directory contains the notebook used for populating the vector base. This notebook includes the steps and methodologies employed to curate the knowledge base from various books and articles related to mental health.
