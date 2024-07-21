@@ -31,7 +31,6 @@ def format_docs(documents):
 
 # This function takes the chat history and a query then returns a refined query that can be used for similarity search
 def query_refinement(chat_history, query):
-    chat_history = format_chat(chat_history)
     genai.configure(api_key=gemini_secret_key)
     system_prompt = f"""Given a chat history and the latest user question which might reference context in the chat history, 
                         formulate a standalone question which can be understood without the chat history. 
@@ -43,7 +42,7 @@ def query_refinement(chat_history, query):
 
 # This function takes a query and chat history then returns the response from the model
 def chat(query, chat_history):
-    chat_history = format_chat(chat_history)
+    history = format_chat(chat_history)
     query = query_refinement(chat_history, query)
     embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent=index_name)
     embedded_query = embeddings.embed_query(query)
@@ -57,7 +56,7 @@ def chat(query, chat_history):
     results = format_docs(results)
     context = ''.join(results)
     model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=f"You are an empathic mental health assistant who listens to the user and provide them with a long warm advice. Answer to the user's query based on this context: {context}")
-    chat = model.start_chat(history=chat_history)
+    chat = model.start_chat(history=history)
     return chat.send_message(content=query).text
 
 # This function is an implementation of a naive retrieval augmented generation flow
