@@ -22,11 +22,6 @@ app.add_middleware(
 class MessageModel(BaseModel):
     isSent: bool
     message: str
-    
-class ConversationModel(BaseModel):
-    chat_history: List[MessageModel]
-    scenario: str
-    conversation: str
 
 class QueryModel(BaseModel):
     query: str
