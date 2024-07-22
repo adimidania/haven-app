@@ -20,7 +20,7 @@ app.add_middleware(
 
 # Models
 class MessageModel(BaseModel):
-    isSent: bool
+    role: str
     message: str
 
 class QueryModel(BaseModel):

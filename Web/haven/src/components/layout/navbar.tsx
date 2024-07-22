@@ -60,6 +60,12 @@ export default function NavBar() {
                 <SheetContent side="left">
                     <div className="grid gap-4 py-6">
                         <Link
+                            href="/auth/sign-in"
+                            className="flex items-center text-sm font-medium hover:text-primary transition"
+                        >
+                            Get Started
+                        </Link>
+                        <Link
                             href="#about"
                             className="flex items-center text-sm font-medium hover:text-primary transition"
                             prefetch={false}
