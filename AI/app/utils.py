@@ -103,3 +103,10 @@ def generate_content(prompt, type):
         system_prompt = f"""Write a compelling long article that follows the user prompt and rely on the following context {results}. Make it well structured, engaging and informative!"""
         model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
         return model.generate_content(prompt).text
+
+# This function generates a conversation title based on the first message sent by the user
+def generate_title(message):
+    genai.configure(api_key=gemini_secret_key)
+    system_prompt = f"""Give a title for a conversation based on the first message of the user. The title should be meaningful and concise!"""
+    model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
+    return model.generate_content(message).text

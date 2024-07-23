@@ -60,3 +60,9 @@ async def chat_ai(request: QueryModel):
     history = request.chat_history
     response = chat(query, history)
     return {"response": response}
+
+# Title Endpoint
+@app.post("/title")
+async def chat_ai(message: str):
+    response = generate_title(message)
+    return {"response": response}

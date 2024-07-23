@@ -71,6 +71,7 @@ When making a request to our API, the input should be structured in the followin
   - **role**: A string indicating the role of the participant in the conversation. Typical values are `"user"` for the user's inputs and `"model"` for the responses from the virtual assistant.
   - **parts**: An array of strings representing the parts of the conversation from the respective role. This allows for breaking down the conversation into manageable pieces for better context understanding.
 
+
 #### Output:
 ```json
 {
@@ -78,6 +79,20 @@ When making a request to our API, the input should be structured in the followin
 }
 ```
 
+We generate a chat title from the user's first message using the `/title` endpoint.
+#### Input:
+```json
+{
+  "message": "str"
+}
+```
+
+#### Output:
+```json
+{
+  "response": "str"
+}
+```
 ### Content Generation
 This feature generates podcasts and articles from our knowledge base, providing users with rich and informative content tailored to their needs. The generation process leverages RAG to ensure that the content is accurate and relevant.
 
