@@ -23,7 +23,7 @@ export async function createANewChatAction(message: string) {
 
     const title = (await response.json()).response as string;
 
-    const chat = await createChat(session.user.id, title);
+    const chat = await createChat(session.user.id, title || "New chat.");
     return chat.id;
   } catch (e) {
     console.log(e);

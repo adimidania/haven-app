@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 import Markdown from "react-markdown"
+import { toast } from "@/components/ui/use-toast"
 
 interface MessageInterface {
     id: string;
@@ -51,6 +52,11 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                 router.push(`/chat/${chatId}`)
                 params.id = [chatId]
             } else {
+                toast({
+                    title: "Error",
+                    description: "Something went wrong. Please try again.",
+                    variant: "destructive",
+                })
                 return message
             }
         }
