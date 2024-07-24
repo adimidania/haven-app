@@ -3,8 +3,6 @@
 import { cn } from '@/lib/utils';
 import { MobileSidebar } from './mobile-sidebar';
 import { UserNav } from './user-nav';
-import Link from 'next/link';
-import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useSidebar } from '@/hooks/useSidebar';
 
@@ -14,7 +12,7 @@ export default function Header() {
 
     return (
         <div className={cn("supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 bg-background/95 backdrop-blur duration-500",
-            !isMinimized ? 'md:left-72' : 'md:left-[72px]',)}>
+            !isMinimized ? 'md:left-60' : 'md:left-[72px]',)}>
             <nav className="flex h-14 items-center justify-between px-4">
                 <div className="hidden md:block">
                 </div>
