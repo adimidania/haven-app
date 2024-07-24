@@ -58,6 +58,7 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                     description: "Something went wrong. Please try again.",
                     variant: "destructive",
                 })
+                setLoading(false)
                 return message
             }
         }
