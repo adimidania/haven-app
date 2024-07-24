@@ -44,7 +44,7 @@ export default function Page() {
             <div className="flex">
                 <div className="flex-1 space-y-4 p-4 pt-6 md:p-8 w-1/2">
                     <div className="flex items-center">
-                        <div className="flex flex-col w-1/2">
+                        <div className="flex flex-col lg:w-1/2">
                             <h1 className="text-xl font-bold">Welcome back, friend! </h1>
                             <p className="text-justify mt-8">
                                 {quote.quote}
