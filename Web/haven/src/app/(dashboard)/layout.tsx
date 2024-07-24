@@ -3,6 +3,7 @@ import Sidebar from '@/components/layout/sidebar';
 import { auth } from '@/lib/auth';
 import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
+import Providers from './providers';
 
 export const metadata: Metadata = {
     title: "Haven App",
@@ -19,11 +20,13 @@ export default async function DashboardLayout({
     return (
         <>
             <SessionProvider session={session}>
-                <Header />
-                <div className="flex h-screen overflow-hidden">
-                    <Sidebar />
-                    <main className="flex-1 overflow-hidden pt-16">{children}</main>
-                </div>
+                <Providers>
+                    <Header />
+                    <div className="flex h-screen overflow-hidden">
+                        <Sidebar />
+                        <main className="flex-1 overflow-hidden pt-16">{children}</main>
+                    </div>
+                </Providers>
             </SessionProvider>
         </>
     );

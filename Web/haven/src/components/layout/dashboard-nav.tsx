@@ -46,7 +46,7 @@ export function DashboardNav({
                                         href={item.disabled ? '/' : item.href}
                                         className={cn(
                                             'flex items-center w-11/12 gap-2 rounded-md py-4 px-4 text-sm font-medium text-accent hover:bg-accent hover:text-secondary',
-                                            path === item.href ? 'bg-accent text-secondary' : 'transparent',
+                                            path.startsWith(item.href) ? 'bg-accent text-secondary' : 'transparent',
                                             item.disabled && 'cursor-not-allowed opacity-80',
                                             isMinimized && 'px-0'
                                         )}
