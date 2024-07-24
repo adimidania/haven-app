@@ -24,8 +24,11 @@
     "@radix-ui/react-scroll-area": "^1.1.0",
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@tanstack/react-query": "^5.51.11",
+    "@uidotdev/usehooks": "^2.4.1",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -37,6 +40,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
+    "react-markdown": "^9.0.1",
     "react-select-country-list": "^2.2.3",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
@@ -44,6 +48,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
