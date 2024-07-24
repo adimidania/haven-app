@@ -20,7 +20,7 @@ export default async function DashboardLayout({
         <>
             <SessionProvider session={session}>
                 <Header />
-                <div className="flex h-screen overflow-hidden">
+                <div className="flex h-[calc(100dvh)] overflow-hidden">
                     <Sidebar />
                     <main className="flex-1 h-full overflow-hidden pt-16">{children}</main>
                 </div>

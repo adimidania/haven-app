@@ -24,7 +24,7 @@ export default function Sidebar({ className }: SidebarProps) {
     return (
         <nav
             className={cn(
-                `relative hidden h-screen flex-none z-10 pt-2 bg-secondary md:block`,
+                `relative hidden h-[calc(100dvh)] flex-none z-10 pt-2 bg-secondary md:block`,
                 status && 'duration-500',
                 !isMinimized ? 'w-60' : 'w-[72px]',
                 className
