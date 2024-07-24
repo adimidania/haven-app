@@ -105,9 +105,9 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
 
     return (
         <div className="flex flex-col h-full w-full overflow-hidden p-4">
-            {messages.length === 0 && !loading ? <p className="m-auto font-semibold text-xl">Send a message to start a conversation.</p> : null}
             <div className="flex-1 overflow-hidden h-full bg-background">
                 <ScrollArea className="h-full">
+                    {messages.length === 0 && !loading ? <p className="m-auto font-semibold text-xl">Send a message to start a conversation.</p> : null}
                     <div className="space-y-4">
                         {messages.map((message) => (
                             <div key={message.id} className={`flex items-start gap-4 ${message.isSent ? "justify-end" : ""}`}>

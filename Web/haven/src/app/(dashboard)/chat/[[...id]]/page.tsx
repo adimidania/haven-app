@@ -36,12 +36,14 @@ export default async function Page({ params }: { params: { id: string[] } }) {
                     </TabsList>
                     <NewChatButton />
                 </div>
-                <TabsContent value="history" className="h-full overflow-hidden flex-grow">
-                    <ChatHistory chats={histories} />
-                </TabsContent>
-                <TabsContent value="chat" className="h-full overflow-hidden flex-grow">
-                    <ChatPage messages={chat?.ChatMessage} />
-                </TabsContent>
+                <div className="h-full overflow-hidden">
+                    <TabsContent value="history" className="h-full">
+                        <ChatHistory chats={histories} />
+                    </TabsContent>
+                    <TabsContent value="chat" className="h-full">
+                        <ChatPage messages={chat?.ChatMessage} />
+                    </TabsContent>
+                </div>
             </Tabs>
         </div >
     )
