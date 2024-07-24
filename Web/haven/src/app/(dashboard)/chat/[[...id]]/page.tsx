@@ -4,8 +4,14 @@ import ChatHistory from "./chat-history";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import ChatPage from "./component";
-import { Button } from "@/components/ui/button";
 import NewChatButton from "./new-chat-button";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+    title: "Chat",
+    description: "Chat with your medical buddy.",
+};
 
 export default async function Page({ params }: { params: { id: string[] } }) {
     const session = await auth()
