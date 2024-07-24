@@ -27,8 +27,8 @@ export default async function Page({ params }: { params: { id: string[] } }) {
     }
 
     return (
-        <div className="flex h-full px-4">
-            <Tabs defaultValue={"chat"} className="w-full h-full">
+        <div className="h-full px-4">
+            <Tabs defaultValue={"chat"} className="w-full h-full flex flex-col">
                 <div className="flex justify-between">
                     <TabsList>
                         <TabsTrigger value="history">History</TabsTrigger>
@@ -36,10 +36,10 @@ export default async function Page({ params }: { params: { id: string[] } }) {
                     </TabsList>
                     <NewChatButton />
                 </div>
-                <TabsContent value="history" className="h-[calc(100%-3rem)] overflow-hidden">
+                <TabsContent value="history" className="h-full overflow-hidden flex-grow">
                     <ChatHistory chats={histories} />
                 </TabsContent>
-                <TabsContent value="chat" className="h-[calc(100%-3rem)] overflow-hidden">
+                <TabsContent value="chat" className="h-full overflow-hidden flex-grow">
                     <ChatPage messages={chat?.ChatMessage} />
                 </TabsContent>
             </Tabs>

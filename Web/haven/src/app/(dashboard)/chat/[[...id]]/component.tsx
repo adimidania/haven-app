@@ -20,8 +20,8 @@ interface MessageInterface {
 export default function ChatPage(props: { messages?: MessageInterface[] }) {
     const [messages, setMessages] = useState<MessageInterface[]>(props.messages || [])
     const [loading, setLoading] = useState(false)
+    const [sendingAI, setSendingAI] = useState(false)
     const [error, setError] = useState(false)
-    const [value, setValue] = useState('')
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const params = useParams<{ id: string[] }>()
     const router = useRouter()
@@ -46,6 +46,7 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
 
 
     const handleSendMessage = async (message: string) => {
+        setLoading(true)
         if (params.id === undefined) {
             const chatId = await createANewChatAction(message)
             if (chatId) {
@@ -72,10 +73,11 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
             ])
         }
         await getAIResponse()
+        setLoading(false)
     }
 
     const getAIResponse = async () => {
-        setLoading(true)
+        setSendingAI(true)
         const aiMessage = await getAIMessageAction(params.id[0])
         if (aiMessage) {
             if (error) {
@@ -92,7 +94,7 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
         } else {
             setError(true)
         }
-        setLoading(false)
+        setSendingAI(false)
     }
 
     const retryAIMessage = async () => {
@@ -102,7 +104,7 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
 
 
     return (
-        <div className="flex flex-col h-full w-full p-4">
+        <div className="flex flex-col h-full w-full overflow-hidden p-4">
             {messages.length === 0 && !loading ? <p className="m-auto font-semibold text-xl">Send a message to start a conversation.</p> : null}
             <div className="flex-1 overflow-hidden h-full bg-background">
                 <ScrollArea className="h-full">
@@ -128,12 +130,12 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                                 </div>
                             </div>
                         )}
-                        {loading && <div className={`flex items-start gap-4`}>
+                        {sendingAI && <div className={`flex items-start gap-4`}>
                             <div
-                                className={`p-3 rounded-lg max-w-[80%] bg-secondary space-y-2`}
+                                className={`p-3 rounded-lg w-full max-w-[80%] bg-secondary space-y-2`}
                             >
-                                <Skeleton className="h-4 w-[250px]" />
-                                <Skeleton className="h-4 w-[200px]" />
+                                <Skeleton className="h-4 w-3/4" />
+                                <Skeleton className="h-4 w-1/4" />
                             </div>
                         </div>}
                         <div ref={messagesEndRef} />
