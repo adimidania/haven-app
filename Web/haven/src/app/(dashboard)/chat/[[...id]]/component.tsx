@@ -122,7 +122,7 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                                 </div>
                             </div>
                         ))}
-                        {error && (
+                        {(error && !sendingAI) && (
                             <div className="flex items-start gap-4">
                                 <div
                                     className="p-3 rounded-lg max-w-[80%] bg-secondary">
