@@ -154,7 +154,7 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                                     className={`p-3 rounded-lg max-w-[80%] text-sm ${message.isSent ? "bg-primary text-primary-foreground" : "bg-secondary"
                                         }`}
                                 >
-                                    {message.isSent ? <div>{message.message}</div> : <div className="prose text-sm xl:prose-xl dark:prose-invert">
+                                    {message.isSent ? <div>{message.message}</div> : <div className="prose dark:prose-invert text-sm">
                                         <Markdown>{message.message}</Markdown>
                                     </div>}
                                     <div className="flex justify-end mr-0">
