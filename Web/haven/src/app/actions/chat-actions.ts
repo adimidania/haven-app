@@ -12,7 +12,7 @@ export async function createANewChatAction(message: string) {
     }
 
     const response = await fetch(
-      "https://haven-app.onrender.com/title?message=" + message,
+      "https://haven-app-1.onrender.com/title?message=" + message,
       {
         method: "POST",
         headers: {

@@ -10,6 +10,8 @@ import { useParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 import Markdown from "react-markdown"
 import { toast } from "@/components/ui/use-toast"
+import { v4 as uuid } from '@lukeed/uuid';
+import { Icons } from "@/components/icons"
 
 interface MessageInterface {
     id: string;
@@ -19,18 +21,31 @@ interface MessageInterface {
 
 export default function ChatPage(props: { messages?: MessageInterface[] }) {
     const [messages, setMessages] = useState<MessageInterface[]>(props.messages || [])
+    const [chatId, setChatId] = useState('')
     const [loading, setLoading] = useState(false)
+    const [sent, setSent] = useState(false)
+    const [sending, setSending] = useState(false)
     const [sendingAI, setSendingAI] = useState(false)
     const [error, setError] = useState(false)
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const params = useParams<{ id: string[] }>()
     const router = useRouter()
+    const messageRef = useRef<HTMLTextAreaElement>(null)
 
     useEffect(() => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
         }
-    }, [messages])
+    }, [messages, sendingAI])
+
+    useEffect(() => {
+        if (sent) {
+            setTimeout(() => {
+                setSent(false)
+                setSending(false)
+            }, 700)
+        }
+    }, [sent])
 
     useEffect(() => {
         if (messages.length > 0 && messages[messages.length - 1].isSent && !loading) {
@@ -47,11 +62,27 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
 
     const handleSendMessage = async (message: string) => {
         setLoading(true)
-        if (params.id === undefined) {
-            const chatId = await createANewChatAction(message)
-            if (chatId) {
-                router.push(`/chat/${chatId}`)
-                params.id = [chatId]
+        const tempId = uuid();
+        const newMessage = {
+            id: tempId,
+            message,
+            isSent: true,
+            isLoading: true
+        }
+
+        setMessages((messages) => [
+            ...messages,
+            newMessage
+        ])
+
+
+        setSending(true)
+        if (params.id === undefined && chatId.length === 0) {
+            const newChatId = await createANewChatAction(message)
+            if (newChatId) {
+                setChatId(newChatId)
+                router.push(`/chat/${newChatId}`)
+                params.id = [newChatId]
             } else {
                 toast({
                     title: "Error",
@@ -62,24 +93,31 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                 return message
             }
         }
-        const messageId = await addMessageAction(params.id ? params.id[0] : "", message)
+        const messageId = await addMessageAction(params.id ? params.id[0] : chatId, message)
         if (messageId) {
-            setMessages((messages) => [
-                ...messages,
-                {
-                    id: messageId,
-                    message,
-                    isSent: true,
-                },
-            ])
+            setSent(true)
+            newMessage.id = messageId;
+            await getAIResponse()
+        } else {
+            setMessages((messages) => {
+                return messages.filter((msg) => msg.id !== tempId)
+            })
+            if (messageRef && messageRef.current) {
+                messageRef.current.value = message
+                messageRef.current.focus()
+            }
+            toast({
+                title: "Error",
+                description: "Something went wrong while sending the message.",
+                variant: "destructive",
+            })
         }
-        await getAIResponse()
         setLoading(false)
     }
 
     const getAIResponse = async () => {
         setSendingAI(true)
-        const aiMessage = await getAIMessageAction(params.id[0])
+        const aiMessage = await getAIMessageAction(params.id ? params.id[0] : chatId)
         if (aiMessage) {
             if (error) {
                 setError(false)
@@ -110,16 +148,28 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                 <ScrollArea className="h-full">
                     {messages.length === 0 && !loading ? <p className="m-auto font-semibold text-xl">Send a message to start a conversation.</p> : null}
                     <div className="space-y-4">
-                        {messages.map((message) => (
+                        {messages.map((message, idx) => (
                             <div key={message.id} className={`flex items-start gap-4 ${message.isSent ? "justify-end" : ""}`}>
                                 <div
-                                    className={`p-3 rounded-lg max-w-[80%] ${message.isSent ? "bg-primary text-primary-foreground" : "bg-secondary"
+                                    className={`p-3 rounded-lg max-w-[80%] text-sm ${message.isSent ? "bg-primary text-primary-foreground" : "bg-secondary"
                                         }`}
                                 >
-                                    {message.isSent ? <div>{message.message}</div> : <div className="prose xl:prose-xl dark:prose-invert">
+                                    {message.isSent ? <div>{message.message}</div> : <div className="prose text-sm xl:prose-xl dark:prose-invert">
                                         <Markdown>{message.message}</Markdown>
                                     </div>}
+                                    <div className="flex justify-end mr-0">
+                                        {idx === messages.length - 1 && sending &&
+                                            (
+                                                !sent ?
+                                                    (
+                                                        <Icons.spinner className="h-3 w-3 animate-spin" />
+                                                    ) : (
 
+                                                        <Icons.check className="h-3 w-3" />
+                                                    )
+                                            )
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -151,6 +201,7 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                                 placeholder="Type your message..."
                                 className="flex-1 resize-none rounded-lg border border-muted px-4 py-2"
                                 disabled={loading}
+                                ref={messageRef}
                                 onKeyDown={async (e) => {
                                     if (e.key === "Enter" && !e.shiftKey) {
                                         e.preventDefault()
