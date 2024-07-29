@@ -30,6 +30,7 @@ import {
   Plus,
   Podcast,
   Save,
+  Send,
   Settings,
   SunMedium,
   Target,
@@ -76,6 +77,7 @@ export const Icons = {
   chat: MessageSquare,
   podcast: Podcast,
   savedItems: Save,
+  sendMessage: Send,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

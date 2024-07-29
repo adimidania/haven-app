@@ -194,12 +194,12 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                 </ScrollArea>
             </div>
             <div className="bg-background border-muted">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center">
                     {error ? <Button className="mx-auto" onClick={retryAIMessage}>Retry</Button> : (
                         <>
                             <Textarea
                                 placeholder="Type your message..."
-                                className="flex-1 resize-none rounded-lg border border-muted px-4 py-2"
+                                className="flex-1 resize-none rounded-lg border border-muted pl-4 py-2 min-h-0 h-[60px] border-r-0 rounded-r-none focus-visible::border-transparent focus-visible:ring-0"
                                 disabled={loading}
                                 ref={messageRef}
                                 onKeyDown={async (e) => {
@@ -208,28 +208,24 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
                                         const message = e.currentTarget.value
                                         if (message) {
                                             e.currentTarget.value = ""
-                                            const retryMessage = await handleSendMessage(message)
-                                            if (retryMessage) {
-                                                e.currentTarget.value = retryMessage
-                                            }
+                                            await handleSendMessage(message)
                                         }
                                     }
                                 }}
                             />
                             <Button
                                 disabled={loading}
+                                variant={"ghost"}
+                                className="bg-none h-[60px] w-[60px] border border-l-0 rounded-l-none p-0 hover:bg-transparent"
                                 onClick={async () => {
                                     const message = document.querySelector("textarea")!.value.trim()
                                     if (message) {
                                         document.querySelector("textarea")!.value = ""
-                                        const retryMessage = await handleSendMessage(message)
-                                        if (retryMessage) {
-                                            document.querySelector("textarea")!.value = retryMessage
-                                        }
+                                        await handleSendMessage(message)
                                     }
                                 }}
                             >
-                                Send
+                                <Icons.sendMessage className="text-muted h-full" />
                             </Button>
                         </>
                     )}
