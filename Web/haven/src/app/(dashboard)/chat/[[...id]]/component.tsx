@@ -94,8 +94,8 @@ export default function ChatPage(props: { messages?: MessageInterface[] }) {
             }
         }
         const messageId = await addMessageAction(params.id ? params.id[0] : chatId, message)
+        setSent(true)
         if (messageId) {
-            setSent(true)
             newMessage.id = messageId;
             await getAIResponse()
         } else {
