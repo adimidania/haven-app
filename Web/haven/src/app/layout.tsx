@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from 'nextjs-toploader';
@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: "Haven App",
   description: "Your medical buddy.",
 };
+
+export const viewport: Viewport = {
+  interactiveWidget: "resizes-content"
+}
 
 export default function RootLayout({
   children,
